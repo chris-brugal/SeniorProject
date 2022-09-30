@@ -1,42 +1,31 @@
-import React, { useEffect } from 'react'
-import Login from "./components/Login";
+import React from "react";
 import LandingPage from "./components/LandingPage";
+import TopArtists from "./components/TopArtists";
+import TopAlbums from "./components/TopAlbums";
+import RoadtripGenerator from "./components/RoadtripGenerator";
+import ErrorPage from "./components/ErrorPage";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import useAuth from "./components/useAuth";
-import SpotifyWebApi from "spotify-web-api-node";
-
-
 const code = new URLSearchParams(window.location.search).get("code");
 
-const spotifyApi = new SpotifyWebApi({
-  clientId: "dd1e4b8b29004075bfe66da0d0a488f3",
-});
-
 function App() {
-  // const accessToken = useAuth(code);
-
-  // useEffect(() => {
-  //   //if no access token
-  //   if (!accessToken) return;
-  //   spotifyApi.setAccessToken(accessToken);
-  //   //gets user detail
-  //   spotifyApi.getMe().then((data) => {
-  //     console.log(data);
-  //   });
-  // }, [accessToken]);
-
   return (
-    // <div>{code ? <LandingPage code={code} /> : <Login />}</div>
+    // Add routes here for any functional piece and then add it to the navbar
     <BrowserRouter>
-      <Navbar />
+      <Navbar code={code} />
       <Routes>
         <Route path="/" exact element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/top-artists" exact element={<TopArtists />} />
+        <Route path="/top-albums" exact element={<TopAlbums />} />
+        <Route
+          path="/roadtrip-generator"
+          exact
+          element={<RoadtripGenerator />}
+        />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
-
   );
 }
 

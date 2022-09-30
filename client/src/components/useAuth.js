@@ -9,7 +9,7 @@ export default function useAuth(code) {
       .post("http://localhost:8000/login", { code })
       .then((response) => {
         // If success then cut the code string from the URL and execute the other thing
-        window.history.pushState({}, null, "/");
+        window.history.pushState({}, null, "/home");
 
         console.log(response.data);
         setAccessToken(response.data.accessToken);
