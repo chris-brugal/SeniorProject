@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { loginUrl } from "./spotify";
 import { Link } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";

@@ -16,7 +16,7 @@ function App() {
       <Navbar code={code} />
       <Routes>
         <Route path="/" exact element={<LandingPage />} />
-        <Route path="/top-artists" exact element={<TopArtists />} />
+        <Route path="/top-artists" exact element={<TopArtists code={code} />} />
         <Route path="/top-albums" exact element={<TopAlbums />} />
         <Route
           path="/roadtrip-generator"
