@@ -53,7 +53,7 @@ const TopArtists = ({code}) => {
 
   return (
     <div>
-        <Grid container spacing={5} sx={{pl: '2.5%', pt:'2.5%'}}>
+        <Grid container spacing={4} sx={{pl: '2.5%', pt:'2.5%'}}>
           <Grid item xs={2}>
             <Card sx={{ maxWidth: 400 }}>
               <CardContent>
@@ -77,11 +77,11 @@ const TopArtists = ({code}) => {
             <Grid container spacing={2}>
                 {artistTable.map( tile => (
                   <Grid item xs={6} sm={3} key={tile.id}>
-                    <Card>
+                    <Card sx={{w:210}}>
                       <CardActionArea>
                         <CardMedia 
                           component="img"
-                          sx={{height: 200, width: 200, p: "2%" }}
+                          sx={{height: 200, width: 200, pr: "2%" }}
                           alt="artist img"
                           image={tile.images[0].url}
                         />
@@ -103,8 +103,9 @@ const TopArtists = ({code}) => {
                     pointerEvents: 'none',
                   }}
                   anchorReference="anchorPosition"
+                  container={anchorEl}
                   open={open}
-                  anchorPosition={{ top:116, left:1170 }}
+                  anchorPosition={{ top:114, left:1170 }}
                   anchorOrigin={{
                     vertical: 'top',
                     horizontal: 'left',
@@ -116,14 +117,14 @@ const TopArtists = ({code}) => {
                   onClose={handlePopoverClose}
                   disableRestoreFocus
                 >
-                  <Card>
+                  <Card sx={{w: 330}}>
                     <CardMedia
                       component="img"
-                      sx={{height: 320, width: 320, p: "2%" }}
+                      sx={{height: 320, width: 320, pr: "2%"}}
                       alt="song/artist img"
                       image={popSong != null && popSong.album.images[0].url}
                     />
-                    <CardContent>
+                    <CardContent sx={{w: 330}}>
                       <Typography variant="h3">
                         {popSong != null && popSong.name}
                       </Typography>
