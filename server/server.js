@@ -96,14 +96,13 @@ app.get("/getTopTracks", (req, res) => {
   axios
   .get("https://api.spotify.com/v1/me/top/tracks", {
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + spotifyApi.getAccessToken()
       }
     })
     .then((response) => res.json(response.data))
     .catch((err) => {
-      console.log('could not get top artists', err);
+      console.log('could not get top tracks', err);
       res.sendStatus(400);
     });
 });
