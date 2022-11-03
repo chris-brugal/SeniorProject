@@ -2,7 +2,7 @@ import React from "react";
 import LandingPage from "./components/LandingPage";
 import TopArtists from "./components/TopArtists";
 import TopAlbums from "./components/TopAlbums";
-import RoadtripGenerator from "./components/RoadtripGenerator";
+import RoadtripGenerator from "./components/RoadtripGenerator"
 import ErrorPage from "./components/ErrorPage";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
