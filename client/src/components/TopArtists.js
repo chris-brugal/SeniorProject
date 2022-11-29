@@ -1,23 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import useAuth from "./useAuth.js";
 import axios from "axios";
-import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea, Popover } from "@mui/material";
+import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea, Dialog, DialogTitle, Popover, Paper } from "@mui/material";
 
 const TopArtists = ({code}) => {
   const accessToken = useAuth(code);
   
+  const popOneRef = useRef();
+  
   const [artistTable, setArtistTable] = useState([]);
   const [songTable, setSongTable] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [artistEl, setArtistEl] = useState(null);
   const [popSong, setPopSong] = useState(null);
+
 
   const handlePopoverOpen = (e, song) => {
     setPopSong(song);
-    setAnchorEl(e.currentTarget);
+    setAnchorEl(popOneRef.current);
   };
 
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
+  const handleArtistOpen = (e) => {
+    setArtistEl()
   };
 
   const open = Boolean(anchorEl);
@@ -49,7 +53,11 @@ const TopArtists = ({code}) => {
         console.log('could not get top artists', err);
       });
     }
-  }, [accessToken]);
+    console.log(popOneRef.current)
+    console.log("ANCHOR EL")
+    console.log(anchorEl)
+
+  }, [accessToken, anchorEl]);
 
   return (
     <div>
@@ -62,13 +70,16 @@ const TopArtists = ({code}) => {
                 </Typography>
                   {
                     songTable.slice(0,10).map( (song, index) => (
-                      <Typography variant="body1" key={song.id}
-                        aria-owns={open ? 'mouse-over-popover' : undefined}
-                        aria-haspopup="true"
-                        onMouseEnter={e => handlePopoverOpen(e, song)}
-                      >
-                        {index+1}. {song.name}
-                      </Typography>
+                      <Paper elevation={0}>
+                        <Typography variant="body1" key={song.id}
+                          aria-owns={open ? 'mouse-over-popover' : undefined}
+                          aria-haspopup="true"
+                          onMouseEnter={e => handlePopoverOpen(e, song)}
+                          sx = {{p:0.5}}
+                        >
+                          {index+1}. {song.name}
+                        </Typography>
+                      </Paper>
                     ))}
               </CardContent>
             </Card>
@@ -81,7 +92,7 @@ const TopArtists = ({code}) => {
                       <CardActionArea>
                         <CardMedia 
                           component="img"
-                          sx={{height: 200, width: 200, pr: "2%" }}
+                          sx={{height: 253, width: 253, pr: "2%" }}
                           alt="artist img"
                           image={tile.images[0].url}
                         />
@@ -90,42 +101,43 @@ const TopArtists = ({code}) => {
                             {tile.name}
                           </Typography>
                         </CardContent>
+
+                        
+
                       </CardActionArea>
                     </Card>
                   </Grid>
                 ))}
               </Grid>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={3} ref={popOneRef}>
                 <Popover
                   id="mouse-over-popover"
                   sx={{
                     pointerEvents: 'none',
                   }}
-                  anchorReference="anchorPosition"
+                  anchorReference="anchorEl"
                   container={anchorEl}
                   open={open}
-                  anchorPosition={{ top:114, left:1170 }}
                   anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
+                    vertical: 'bottom',
+                    horizontal: 'right',
                   }}
                   transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'left',
+                    horizontal: 'right',
                   }}
-                  onClose={handlePopoverClose}
                   disableRestoreFocus
                 >
                   <Card sx={{w: 330}}>
                     <CardMedia
                       component="img"
-                      sx={{height: 320, width: 320, pr: "2%"}}
+                      sx={{height: 300, width: 300, pr: "2%"}}
                       alt="song/artist img"
                       image={popSong != null && popSong.album.images[0].url}
                     />
                     <CardContent sx={{w: 330}}>
-                      <Typography variant="h3">
+                      <Typography variant="h4">
                         {popSong != null && popSong.name}
                       </Typography>
                       <Typography variant="subtitle1">
