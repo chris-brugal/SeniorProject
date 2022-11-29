@@ -121,7 +121,22 @@ app.get("/getTopTracks", (req, res) => {
     });
 });
 
-
+app.get("/getMyPlaylists", (req, res) => {
+  axios
+    .get("https://api.spotify.com/v1/me/playlists?limit=50", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + spotifyApi.getAccessToken(),
+      },
+    })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      console.log("could not get user playlists", err);
+      res.sendStatus(400);
+    });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

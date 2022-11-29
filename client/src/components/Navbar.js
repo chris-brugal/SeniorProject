@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const pages = new Map([
-  ["top-artists", "Top Artists "],
-  ["top-albums", "Top Albums "],
+  ["top-artists", "Top Artists"],
+  ["playlists", "Playlists"],
   ["roadtrip-generator", "Roadtrip Generator"],
 ]);
 
