@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from "react";
 import useAuth from "./useAuth.js";
+import ArtistPopup from "./ArtistPopup.js";
 import axios from "axios";
 import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea, Dialog, DialogTitle, Popover, Paper } from "@mui/material";
 
@@ -13,6 +14,7 @@ const TopArtists = ({code}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [artistEl, setArtistEl] = useState(null);
   const [popSong, setPopSong] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
 
   const handlePopoverOpen = (e, song) => {
@@ -20,8 +22,15 @@ const TopArtists = ({code}) => {
     setAnchorEl(popOneRef.current);
   };
 
-  const handleArtistOpen = (e) => {
-    setArtistEl()
+  const handleArtistOpen = (e, tile) => {
+    setArtistEl(tile);
+    console.log("TILE TILE TILE");
+    console.log(tile);
+    setDialogOpen(true);
+  };
+
+  const handleArtistClose = () => {
+    setDialogOpen(false)
   };
 
   const open = Boolean(anchorEl);
@@ -53,9 +62,6 @@ const TopArtists = ({code}) => {
         console.log('could not get top artists', err);
       });
     }
-    console.log(popOneRef.current)
-    console.log("ANCHOR EL")
-    console.log(anchorEl)
 
   }, [accessToken, anchorEl]);
 
@@ -89,7 +95,7 @@ const TopArtists = ({code}) => {
                 {artistTable.map( tile => (
                   <Grid item xs={6} sm={3} key={tile.id}>
                     <Card sx={{w:210}}>
-                      <CardActionArea>
+                      <CardActionArea onClick={e => handleArtistOpen(e, tile)}>
                         <CardMedia 
                           component="img"
                           sx={{height: 253, width: 253, pr: "2%" }}
@@ -102,12 +108,16 @@ const TopArtists = ({code}) => {
                           </Typography>
                         </CardContent>
 
-                        
-
                       </CardActionArea>
                     </Card>
                   </Grid>
                 ))}
+                    <ArtistPopup
+                    artist={artistEl}
+                    open={dialogOpen}
+                    onClose={handleArtistClose}
+                    code={code}
+                    />
               </Grid>
             </Grid>
             <Grid item xs={3} ref={popOneRef}>
@@ -129,7 +139,7 @@ const TopArtists = ({code}) => {
                   }}
                   disableRestoreFocus
                 >
-                  <Card sx={{w: 330}}>
+                  <Card sx={{w: 300}}>
                     <CardMedia
                       component="img"
                       sx={{height: 300, width: 300, pr: "2%"}}
