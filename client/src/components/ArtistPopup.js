@@ -44,7 +44,7 @@ import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea, Dialog,
                                 component="img"
                                 sx={{height: 400, width: 400, pr: "2%" }}
                                 alt="artist img"
-                                image={artist.images[0].url}
+                                image={artist != null && artist.images[0].url}
                                 />
                         <CardContent sx={{w: 330}}>
                         </CardContent>

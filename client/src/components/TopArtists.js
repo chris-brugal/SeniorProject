@@ -91,7 +91,7 @@ const TopArtists = ({code}) => {
             </Card>
           </Grid>
           <Grid item xs={7}>
-            <Grid container spacing={2}>
+            <Grid container spacing={7}>
                 {artistTable.map( tile => (
                   <Grid item xs={6} sm={3} key={tile.id}>
                     <Card sx={{w:210}}>
