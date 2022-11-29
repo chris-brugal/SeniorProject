@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const spotifyWebApi = require("spotify-web-api-node");
 const axios = require("axios");
+const { response } = require("express");
 
 const app = express();
 const port = 8000;
@@ -136,6 +137,16 @@ app.get("/getMyPlaylists", (req, res) => {
       console.log("could not get user playlists", err);
       res.sendStatus(400);
     });
+});
+
+app.get("/getArtistTopTracks", (req, res) => {
+
+  spotifyApi.getArtistTopTracks(req.id, 'US')
+  .then((response) => res.json(response.data))
+  .catch((err) => {
+    console.log('could not get Artist top tracks', err);
+    res.sendStatus(400);
+  });
 });
 
 app.listen(port, () => {
