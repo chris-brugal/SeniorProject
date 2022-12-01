@@ -76,10 +76,10 @@ app.post("/refresh", (req, res) => {
     });
 });
 
-app.get("/getTopArtists", (req, res) => {
-
+app.post("/getTopArtists", (req, res) => {
+  console.log(req);
   axios
-  .get("https://api.spotify.com/v1/me/top/artists", {
+  .get("https://api.spotify.com/v1/me/top/artists"+req.body.timeRange, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + spotifyApi.getAccessToken()
@@ -92,10 +92,10 @@ app.get("/getTopArtists", (req, res) => {
     });
 });
 
-app.get("/getTopTracks", (req, res) => {
-
+app.post("/getTopTracks", (req, res) => {
+  console.log(req.body);
   axios
-  .get("https://api.spotify.com/v1/me/top/tracks", {
+  .get("https://api.spotify.com/v1/me/top/tracks"+req.body.timeRange, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + spotifyApi.getAccessToken()
@@ -108,14 +108,35 @@ app.get("/getTopTracks", (req, res) => {
     });
 });
 
-app.get("/getArtistTopTracks", (req, res) => {
-
-  spotifyApi.getArtistTopTracks(req.id, 'US')
-  .then((response) => res.json(response.data))
+app.post("/getArtistTopTracks", (req, res) => {
+  console.log("\nGetting artist top tracks\n");
+  console.log(req.body);
+  spotifyApi.getArtistTopTracks(req.body.id, 'US')
+  .then((response) => {
+    console.log(response);
+    res.json(response);
+  })
   .catch((err) => {
     console.log('could not get Artist top tracks', err);
     res.sendStatus(400);
   });
+});
+
+app.post("/getAlbumTracks", (req, res) => {
+  console.log("\nGetting album tracks\n");
+  console.log(req.body);
+  axios
+  .get("https://api.spotify.com/v1/albums/"+req.body.heads, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + spotifyApi.getAccessToken()
+      }
+    })
+    .then((response) => res.json(response.data))
+    .catch((err) => {
+      console.log('could not get top tracks', err);
+      res.sendStatus(400);
+    });
 });
 
 app.listen(port, () => {

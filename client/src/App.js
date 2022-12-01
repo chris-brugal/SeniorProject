@@ -1,7 +1,7 @@
 import React from "react";
 import LandingPage from "./components/LandingPage";
 import TopArtists from "./components/TopArtists";
-import TopAlbums from "./components/TopAlbums";
+import TopSongs from "./components/TopSongs";
 import RoadtripGenerator from "./components/RoadtripGenerator";
 import ErrorPage from "./components/ErrorPage";
 import Navbar from "./components/Navbar";
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<LandingPage />} />
         <Route path="/top-artists" exact element={<TopArtists code={code} />} />
-        <Route path="/top-albums" exact element={<TopAlbums />} />
+        <Route path="/top-songs" exact element={<TopSongs code={code} />} />
         <Route
           path="/roadtrip-generator"
           exact

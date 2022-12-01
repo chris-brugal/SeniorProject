@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 
 const pages = new Map([
   ["top-artists", "Top Artists "],
-  ["top-albums", "Top Albums "],
+  ["top-songs", "Top Songs "],
   ["roadtrip-generator", "Roadtrip Generator"],
 ]);
 
