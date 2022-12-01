@@ -3,13 +3,13 @@ import useAuth from "./useAuth.js";
 import axios from "axios";
 import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea, Dialog, DialogTitle, Popover, Paper, CardActions } from "@mui/material";
 
-const TopArtists = ({code}) => {
+const TopSongs = ({code}) => {
   const accessToken = useAuth(code);
   
   const popOneRef = useRef();
   
-  const [artistTable, setArtistTable] = useState([]);
-  const [artSongTable, setArtSongTable] = useState([]);
+  const [songTable, setSongTable] = useState([]);
+  const [albumTable, setAlbumTable] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [popUp, setpopUp] = useState();
   const [timeRange, setTimeRange] = useState('medium_term')
@@ -21,14 +21,14 @@ const TopArtists = ({code}) => {
   const handlePopoverOpen = (e, tile) => {
     setpopUp(tile);
     console.log(popUp)
-    console.log("Fetching artist top songs")
-          return axios.post("http://localhost:8000/getArtistTopTracks", {
+    console.log("Fetching album songs")
+          return axios.post("http://localhost:8000/getAlbumTracks", {
             'Access-Control-Allow-Origin': 'http://localhost:8000',
-            'id': popUp.id
+            'heads': popUp.album.id+'/tracks?market=US&limit=5'
           })
           .then((response) => {
               console.log(response);
-              setArtSongTable(response.data.body.tracks);
+              setAlbumTable(response.data.items);
               setAnchorEl(popOneRef.current);
               console.log(anchorEl)
           })
@@ -51,17 +51,17 @@ const TopArtists = ({code}) => {
     if(accessToken){
 
       axios
-      .post("http://localhost:8000/getTopArtists", {
+      .post("http://localhost:8000/getTopTracks", {
         'Access-Control-Allow-Origin': 'http://localhost:8000',
         'timeRange': "?time_range="+timeRange
       })
       .then((response) => {
-        console.log("ARTIST ARTIST")
+        console.log("SONGS")
         console.log(response);
-        setArtistTable(response.data.items);
+        setSongTable(response.data.items);
       })
       .catch((err) => {
-        console.log('could not get top artists', err);
+        console.log('could not get top tracks', err);
       });
     }
 
@@ -102,7 +102,7 @@ const TopArtists = ({code}) => {
           </Grid>
           <Grid item sx={{width: '60%'}} timeRange={timeRange}>
             <Grid container spacing={2}>
-                {artistTable.map( tile => (
+                {songTable.map( tile => (
                   <Grid item sx={{w:'25%'}} key={tile.id}>
                     <Card sx={{w:'100%'}}>
                       <CardActionArea 
@@ -113,13 +113,14 @@ const TopArtists = ({code}) => {
                           component="img"
                           sx={{height: 275, width: 275}}
                           alt="artist img"
-                          image={tile.images[0].url}
+                          image={tile.album.images[0].url}
                         />
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="div">
                             {tile.name}
                           </Typography>
                         </CardContent>
+
                       </CardActionArea>
                     </Card>
                   </Grid>
@@ -150,19 +151,19 @@ const TopArtists = ({code}) => {
                       component="img"
                       sx={{w: popW, h: popH}}
                       alt="song/artist img"
-                      image={popUp != null && popUp.images[0].url}
+                      image={popUp != null && popUp.album.images[0].url}
                     />
                     <CardContent>
                       <Typography variant="h4">
-                        {popUp != null && popUp.name}
+                        {popUp != null && popUp.album.name}
                       </Typography>
                       <Typography variant="subtitle1">
-                        Primary Genre: {popUp != null && popUp.genres[0]}
+                        Primary Genre: 
                       </Typography>
                       <Typography variant="body2">
-                        Followers: {popUp != null && popUp.followers["total"]}
+                        Tracklist: 
                         {
-                        artSongTable.slice(0,5).map( (song, index) => (
+                        albumTable.slice(0,5).map( (song, index) => (
                           <Paper elevation={0}>
                             <Typography variant="body1" key={song.id}
                               
@@ -182,4 +183,4 @@ const TopArtists = ({code}) => {
   );
 };
 
-export default TopArtists;
+export default TopSongs;
