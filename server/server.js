@@ -157,6 +157,41 @@ app.post("/getAlbumTracks", (req, res) => {
     });
 });
 
+app.get("/getGenres", (req, res) => {
+  axios
+    .get("https://api.spotify.com/v1/recommendations/available-genre-seeds", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + spotifyApi.getAccessToken(),
+      },
+    })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      console.log("could not get user playlists", err);
+      res.sendStatus(400);
+    });
+});
+
+app.post("/getRecommendationsByGenre", (req, res) => {
+  // console.log("\nGetting album tracks\n");
+  console.log('req.body in Server',req.body);
+  axios
+  // .get("https://api.spotify.com/v1/recommendations?limit=30&market=US&seed_genres="+req.body.heads, {
+    .get("https://api.spotify.com/v1/recommendations?"+req.body.heads, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + spotifyApi.getAccessToken()
+      }
+    })
+    .then((response) => res.json(response.data))
+    .catch((err) => {
+      console.log('could not get recommendations', err);
+      res.sendStatus(400);
+    });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
