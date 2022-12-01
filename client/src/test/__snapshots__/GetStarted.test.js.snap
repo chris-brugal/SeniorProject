@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot testing snapshot testing for Get Started component 1`] = `
+<div
+  className="home-div"
+  id="GetStarted"
+>
+  <h2
+    className="MuiTypography-root MuiTypography-h2 main-text css-lrs2p1-MuiTypography-root"
+  >
+    Get Started
+  </h2>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-z4xi2a-MuiGrid-root"
+    style={
+      Object {
+        "minHeight": "90vh",
+      }
+    }
+  >
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7 css-fim4zn-MuiGrid-root"
+      justify="center"
+    >
+      <img
+        alt="join"
+        className="main-img"
+        height="50%"
+        src="/images/city.jpg"
+        width="50%"
+      />
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5 css-sc7rel-MuiGrid-root"
+      justify="center"
+    >
+      <h2
+        className="MuiTypography-root MuiTypography-h2 main-text css-1sra7t5-MuiTypography-root"
+      >
+        Log in and go! 
+        <br />
+        <a
+          onClick={[Function]}
+        >
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-sghohy-MuiButtonBase-root-MuiButton-root"
+            disabled={false}
+            onBlur={[Function]}
+            onContextMenu={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            Back to the top
+            <span
+              className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </a>
+      </h2>
+    </div>
+  </div>
+</div>
+`;

@@ -120,7 +120,6 @@ const TopArtists = ({code}) => {
                             {tile.name}
                           </Typography>
                         </CardContent>
-
                       </CardActionArea>
                     </Card>
                   </Grid>
