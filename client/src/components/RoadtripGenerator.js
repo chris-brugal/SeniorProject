@@ -115,7 +115,7 @@ const RoadtripGenerator = ({code}) => {
                 <CardContent>
                   <Typography variant="h3">Roadtrip Generator</Typography>
                   <Typography variant="h5">Your estimated trip time is { estimatedTripTime }.</Typography>
-                  <Typography variant="h5">You have { numPassengers } passengers.</Typography>
+                  {/* <Typography variant="h5">You have { numPassengers } passengers.</Typography> */}
                   <Typography variant="h5">Passenger 1's genre is: { passenger1 }</Typography>
                   <Typography variant="h5">Passenger 2's genre is: { passenger2 }</Typography>
                   <Typography variant="h5">Passenger 3's genre is: { passenger3 }</Typography>
