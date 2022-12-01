@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot testing snapshot testing for AboutUs component 1`] = `
+<div
+  className="About Us"
+  id="about"
+>
+  <h2
+    className="MuiTypography-root MuiTypography-h2 main-text css-lrs2p1-MuiTypography-root"
+  >
+    About Spotify Central
+  </h2>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-1402ce4-MuiGrid-root"
+    style={
+      Object {
+        "minHeight": "95vh",
+      }
+    }
+  >
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3 css-1rymtov-MuiGrid-root"
+      justify="center"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root card-size css-bhp9pd-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          className="MuiBox-root css-scc2th"
+        >
+          <img
+            alt="graph"
+            className="icon-img"
+            src="/images/graph.png"
+          />
+        </div>
+        <div
+          className="MuiCardHeader-root card-title css-185gdzj-MuiCardHeader-root"
+        >
+          <div
+            className="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <span
+              className="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+            >
+              Statistics
+            </span>
+            <span
+              className="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-nrdprl-MuiTypography-root"
+            >
+              Be able to see your statics such as your top artists and albums!
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3 css-1rymtov-MuiGrid-root"
+      justify="center"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root card-size css-bhp9pd-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          className="MuiBox-root css-scc2th"
+        >
+          <img
+            alt="trail"
+            className="icon-img"
+            src="/images/trail.png"
+          />
+        </div>
+        <div
+          className="MuiCardHeader-root card-title css-185gdzj-MuiCardHeader-root"
+        >
+          <div
+            className="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <span
+              className="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+            >
+              Generate
+            </span>
+            <span
+              className="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-nrdprl-MuiTypography-root"
+            >
+              Generate perfect length playlists for when you are on the road!
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-3 css-1rymtov-MuiGrid-root"
+      justify="center"
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root card-size css-bhp9pd-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          className="MuiBox-root css-scc2th"
+        >
+          <img
+            alt="album"
+            className="icon-img"
+            src="/images/album.png"
+          />
+        </div>
+        <div
+          className="MuiCardHeader-root card-title css-185gdzj-MuiCardHeader-root"
+        >
+          <div
+            className="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <span
+              className="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+            >
+              Personalize
+            </span>
+            <span
+              className="MuiTypography-root MuiTypography-body1 MuiCardHeader-subheader css-nrdprl-MuiTypography-root"
+            >
+              Be able to customize and edit your playlists much more easily!
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

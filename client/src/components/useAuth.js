@@ -35,7 +35,7 @@ export default function useAuth(code) {
         })
         .catch(() => {
           //   If fail redirect to home page - Login page
-          // window.location = "/";
+          window.location = "/";
         });
       }
   }, [code]);

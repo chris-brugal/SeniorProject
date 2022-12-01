@@ -29,7 +29,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-
   //  Get the "code" value posted from the client-side and get the user's accessToken from the spotify api
   const code = req.body.code;
 
@@ -138,6 +137,74 @@ app.post("/getAlbumTracks", (req, res) => {
       res.sendStatus(400);
     });
 });
+
+app.post("/refresh", (req, res) => {
+  //  Get the "code" value posted from the client-side and get the user's accessToken from the spotify api
+  const code = req.body.code;
+
+  // Retrieve an access token
+  spotifyApi
+    .refreshAccessToken()
+    .then((data) => {
+      spotifyApi.setAccessToken(data.body.access_token);
+      // Returning the User's AccessToken in the json formate
+      res.json({
+        accessToken: data.body.accessToken,
+        refreshToken: data.body.refresh_token,
+      });
+    })
+    .catch((err) => {
+      console.log("could not refresh access token", err);
+      res.sendStatus(400);
+    });
+});
+
+app.get("/getTopArtists", (req, res) => {
+  axios
+    .get("https://api.spotify.com/v1/me/top/artists", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + spotifyApi.getAccessToken(),
+      },
+    })
+    .then((response) => res.json(response.data))
+    .catch((err) => {
+      console.log("could not get top artists", err);
+      res.sendStatus(400);
+    });
+});
+
+app.get("/getTopTracks", (req, res) => {
+  axios
+    .get("https://api.spotify.com/v1/me/top/tracks", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + spotifyApi.getAccessToken(),
+      },
+    })
+    .then((response) => res.json(response.data))
+    .catch((err) => {
+      console.log("could not get top tracks", err);
+      res.sendStatus(400);
+    });
+});
+
+app.get("/getTopTracks", (req, res) => {
+  axios
+    .get("https://api.spotify.com/v1/me/top/tracks", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + spotifyApi.getAccessToken(),
+      },
+    })
+    .then((response) => res.json(response.data))
+    .catch((err) => {
+      console.log("could not get top tracks", err);
+      res.sendStatus(400);
+    });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

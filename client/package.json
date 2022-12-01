@@ -44,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^10.10.0",
+    "react-test-renderer": "^18.2.0"
   }
 }
