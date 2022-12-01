@@ -5,7 +5,6 @@ import { Card, Typography, Box, TextField, CardContent, CardActions, Button, Aut
 
 const RoadtripGenerator = ({code}) => {
   const accessToken = useAuth(code);
-  const options = ['Pop', 'Hip Hop', 'Jazz', 'Dance', 'Country', 'Disco', 'Musical Theatre', 'Latin', 'Kpop'];
   let [landingScreen, setlandingScreen] = React.useState(true);
   let [finalScreen, setfinalScreen] = React.useState(false);
   let [estimatedTripTime, setestimatedTripTime] = React.useState("");
@@ -85,7 +84,7 @@ const RoadtripGenerator = ({code}) => {
                   variant="outlined" 
                 />
                 </CardActions>
-                <CardActions>
+                {/* <CardActions>
                   <TextField 
                   type="number"
                   id="num-passengers" 
@@ -94,7 +93,7 @@ const RoadtripGenerator = ({code}) => {
                   label="Number of passengers [1-4]" 
                   variant="outlined" 
                 />
-                </CardActions>
+                </CardActions> */}
                 <CardActions>
                   <TextField 
                   type="number"
@@ -137,112 +136,14 @@ const RoadtripGenerator = ({code}) => {
                           </Paper>
                         ))}
                       </Typography>
-                  {/* {console.log(passenger1 + "&2" + passenger1)} */}
-                  {/* {Array.from(passengers).map((genre, index) => (
-                    <Typography variant="h5">Passenger {index}'s genre is: {genre}</Typography>
-                  ))} */}
                 </CardContent>
               </Card>
             ) :
             (
-              // numPassengers == 3 ? (
-              //   <Card variant="outlined" sx={{ height: 500, width: 500 }}>
-              //   <CardContent>
-              //     <Typography variant="h3">Roadtrip Generator</Typography>
-              //   </CardContent>
-              //   <CardActions>
-              //     {/* {passengers.map(i => <p>{i}</p>)} */}
-              //     {/* {for(let i = 0; i < numPassengers; i++) {<p>hi</p>}} */}
-              //     <Autocomplete
-              //       disablePortal
-              //       id="passenger1-genre"
-              //       onChange={(i, newValue) => {setPassengers(newValue)}}
-              //       options={options}
-              //       sx={{ width: 300 }}
-              //       renderInput={(params) => <TextField {...params} label="Passenger 1" />}
-              //     />
-              //   </CardActions>
-              //   <CardActions>
-              //     <Autocomplete
-              //       disablePortal
-              //       id="passenger2-genre"
-              //       onChange={(i, newValue) => {setPassengers(newValue)}}
-              //       options={options}
-              //       sx={{ width: 300 }}
-              //       renderInput={(params) => <TextField {...params} label="Passenger 2" />}
-              //     />
-              //   </CardActions>
-              //   <CardActions>
-              //     <Autocomplete
-              //       disablePortal
-              //       id="passenger3-genre"
-              //       onChange={(i, newValue) => {setPassengers(newValue)}}
-              //       options={options}
-              //       sx={{ width: 300 }}
-              //       renderInput={(params) => <TextField {...params} label="Passenger 3" />}
-              //     />
-              //   </CardActions>
-              //   <CardActions>
-              //     <Button variant="contained" onClick={() => setfinalScreen(!finalScreen)}>Submit</Button>
-              //   </CardActions>
-              // </Card>
-              // ) : numPassengers == 2 ? (
-              //   <Card variant="outlined" sx={{ height: 500, width: 500 }}>
-              //   <CardContent>
-              //     <Typography variant="h3">Roadtrip Generator</Typography>
-              //   </CardContent>
-              //   <CardActions>
-              //     {/* {passengers.map(i => <p>{i}</p>)} */}
-              //     {/* {for(let i = 0; i < numPassengers; i++) {<p>hi</p>}} */}
-              //     <Autocomplete
-              //       disablePortal
-              //       id="passenger1-genre"
-              //       onChange={(i, newValue) => {setPassengers(newValue)}}
-              //       options={options}
-              //       sx={{ width: 300 }}
-              //       renderInput={(params) => <TextField {...params} label="Passenger 1" />}
-              //     />
-              //   </CardActions>
-              //   <CardActions>
-              //     <Autocomplete
-              //       disablePortal
-              //       id="passenger2-genre"
-              //       onChange={(i, newValue) => {setPassengers(newValue)}}
-              //       options={options}
-              //       sx={{ width: 300 }}
-              //       renderInput={(params) => <TextField {...params} label="Passenger 2" />}
-              //     />
-              //   </CardActions>
-              //   <CardActions>
-              //     <Button variant="contained" onClick={() => setfinalScreen(!finalScreen)}>Submit</Button>
-              //   </CardActions>
-              // </Card>
-              // ) : (
-              //   <Card variant="outlined" sx={{ height: 500, width: 500 }}>
-              //   <CardContent>
-              //     <Typography variant="h3">Roadtrip Generator</Typography>
-              //   </CardContent>
-              //   <CardActions>
-              //     {/* {passengers.map(i => <p>{i}</p>)} */}
-              //     {/* {for(let i = 0; i < numPassengers; i++) {<p>hi</p>}} */}
-              //     <Autocomplete
-              //       disablePortal
-              //       id="passenger1-genre"
-              //       onChange={(i, newValue) => {setPassengers(newValue)}}
-              //       options={options}
-              //       sx={{ width: 300 }}
-              //       renderInput={(params) => <TextField {...params} label="Passenger 1" />}
-              //     />
-              //   </CardActions>
-              //   <CardActions>
-              //     <Button variant="contained" onClick={() => setfinalScreen(!finalScreen)}>Submit</Button>
-              //   </CardActions>
-              // </Card>
-              // )
-
                 <Card variant="outlined" sx={{ height: 500, width: 500 }}>
                 <CardContent>
                   <Typography variant="h3">Roadtrip Generator</Typography>
+                  <Typography variant="h6">Please enter in each passenger's preferred song genre.</Typography>
                 </CardContent>
                 <CardActions>
                   {/* {passengers.map(i => <p>{i}</p>)} */}
@@ -293,7 +194,6 @@ const RoadtripGenerator = ({code}) => {
                   }}>Submit</Button>
                 </CardActions>
               </Card>
-              
             )
           }
           </Box> 
