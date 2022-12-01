@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot testing snapshot testing for Error Page component 1`] = `
+<div>
+  ErrorPage
+</div>
+`;
