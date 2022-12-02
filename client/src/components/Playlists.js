@@ -1,34 +1,14 @@
 import React, {useEffect, useState} from "react";
 import useAuth from "./useAuth.js";
 import axios from "axios";
-import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea, Popover } from "@mui/material";
+import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea } from "@mui/material";
 
 const Playlists = ({code}) => {
   const accessToken = useAuth(code);
   
-  const [artistTable, setArtistTable] = useState([]);
-  const [songTable, setSongTable] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [popSong, setPopSong] = useState(null);
   const [playlistTable, setPlaylistTable] = useState([]);
-  const [playlistIdTable, setPlaylistIdTable] = useState([]);
 
-  const handlePopoverOpen = (e, song) => {
-    setPopSong(song);
-    setAnchorEl(e.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-
-  function msMS(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-  }
+  const open = Boolean(false);
 
   useEffect(() => {
     if(accessToken){
@@ -38,19 +18,6 @@ const Playlists = ({code}) => {
       })
       .then((response) => {
         console.log(response);
-        // setArtistTable(response.data.items);
-        // setPlaylistIdTable(response.data.items.id);
-        // console.log(response.data.items.id);
-        // let playlistId = response.data.items.id;
-        // return axios.get("http://localhost:8000/playlistId}}}/getTopTracks", {
-        //   'Access-Control-Allow-Origin': 'http://localhost:8000'
-        // })
-        // .then((response) => {
-        //   console.log(response);
-        //   setPlaylistTable(response.data.items);
-        // })
-        console.log(response);
-
         setPlaylistTable(response.data.items);
       })
       .catch((err) => {
@@ -61,26 +28,6 @@ const Playlists = ({code}) => {
 
   return (
     <div>
-        {/* <Grid container spacing={4} sx={{pl: '2.5%', pt:'2.5%'}}>
-          <Grid item xs={2}>
-            <Card sx={{ maxWidth: 400 }}>
-              <CardContent>
-                <Typography variant="h5" sx={{p:0.5}}>
-                  Top Songs
-                </Typography>
-                  {
-                    songTable.slice(0,10).map( (song, index) => (
-                      <Typography variant="body1" key={song.id}
-                        aria-owns={open ? 'mouse-over-popover' : undefined}
-                        aria-haspopup="true"
-                        onMouseEnter={e => handlePopoverOpen(e, song)}
-                      >
-                        {index+1}. {song.name}
-                      </Typography>
-                    ))}
-              </CardContent>
-            </Card>
-          </Grid> */}
           <Grid item xs={7}>
             <Grid container spacing={2}>
                 {playlistTable.map( tile => (
@@ -94,13 +41,9 @@ const Playlists = ({code}) => {
                           image={tile.images[0].url}
                         />
                         <CardContent>
-                          {/* <Typography gutterBottom variant="h5" component="div">
-                            {tile.name}
-                          </Typography> */}
                           <Typography gutterBottom variant="h5" component="div" key={tile.id}
                             aria-owns={open ? 'mouse-over-popover' : undefined}
                             aria-haspopup="true"
-                            onMouseEnter={e => handlePopoverOpen(e, tile)}
                           >
                             {tile.name}
                           </Typography>
@@ -111,49 +54,6 @@ const Playlists = ({code}) => {
                 ))}
               </Grid>
             </Grid>
-            {/* <Grid item xs={3}>
-                <Popover
-                  id="mouse-over-popover"
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  anchorReference="anchorPosition"
-                  container={anchorEl}
-                  open={open}
-                  anchorPosition={{ top:114, left:1170 }}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  onClose={handlePopoverClose}
-                  disableRestoreFocus
-                >
-                  <Card sx={{w: 330}}>
-                    <CardMedia
-                      component="img"
-                      sx={{height: 320, width: 320, pr: "2%"}}
-                      alt="song/artist img"
-                      image={popSong != null && popSong.album.images[0].url}
-                    />
-                    <CardContent sx={{w: 330}}>
-                      <Typography variant="h3">
-                        {popSong != null && popSong.name}
-                      </Typography>
-                      <Typography variant="subtitle1">
-                        {popSong != null && popSong.artists[0].name}
-                      </Typography>
-                      <Typography variant="body2">
-                        {popSong != null && msMS(popSong.duration_ms)}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Popover>
-            </Grid>
-        </Grid> */}
     </div>
   );
 };
