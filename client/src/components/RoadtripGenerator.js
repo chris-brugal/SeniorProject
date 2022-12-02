@@ -13,6 +13,7 @@ const RoadtripGenerator = ({code}) => {
   let [passenger2, setpassenger2] = React.useState("");
   let [passenger3, setpassenger3] = React.useState("");
   let [passenger4, setpassenger4] = React.useState("");
+  let [passenger5, setpassenger5] = React.useState("");
   let [genres, setGenres] = useState([]);
   let [recommendations, setRecommendations] = useState([]);
   let [numSongsInPlaylist, setNumSongsInPlaylist] = React.useState(0);
@@ -37,7 +38,7 @@ const RoadtripGenerator = ({code}) => {
   const getRecommendations = () => {
     return axios.post("http://localhost:8000/getRecommendationsByGenre", {
             'Access-Control-Allow-Origin': 'http://localhost:8000',
-            'heads': "limit="+numSongsInPlaylist+"&market=US&seed_genres="+passenger1+","+passenger2+","+passenger3+","+passenger4
+            'heads': "limit="+numSongsInPlaylist+"&market=US&seed_genres="+passenger1+","+passenger2+","+passenger3+","+passenger4+","+passenger5
           })
           .then((response) => {
               console.log('response', response);
@@ -85,7 +86,7 @@ const RoadtripGenerator = ({code}) => {
                   variant="outlined" 
                 />
                 </CardActions> */}
-                <CardActions>
+                {/* <CardActions>
                   <TextField 
                   type="number"
                   id="num-passengers" 
@@ -94,7 +95,7 @@ const RoadtripGenerator = ({code}) => {
                   label="Number of passengers [1-4]" 
                   variant="outlined" 
                 />
-                </CardActions>
+                </CardActions> */}
                 <CardActions>
                   <TextField 
                   type="number"
@@ -112,16 +113,16 @@ const RoadtripGenerator = ({code}) => {
             ) :
             finalScreen ? 
             (
-              <Card variant="outlined" sx={{ height: 500, width: 500, overflowY: "scroll", }}>
+              <Card variant="outlined" sx={{ height: 500, width: 500, overflowY: "scroll" }}>
                 <CardContent>
                   <Typography variant="h3">Roadtrip Generator</Typography>
                   {Array.from(recommendations).forEach((i) => playlistDuration += parseInt(i.duration_ms))} 
                   <Typography variant="h5">The playlist duration is { msMS(playlistDuration) }.</Typography>
-                  <Typography variant="h5">You have { numPassengers } passengers.</Typography>
                   <Typography variant="h5">Passenger 1's genre is: { passenger1 }</Typography>
                   <Typography variant="h5">Passenger 2's genre is: { passenger2 }</Typography>
                   <Typography variant="h5">Passenger 3's genre is: { passenger3 }</Typography>
                   <Typography variant="h5">Passenger 4's genre is: { passenger4 }</Typography>
+                  <Typography variant="h5">Passenger 5's genre is: { passenger5 }</Typography>
                   <Typography variant="h5">
                         Tracklist: 
                         {
@@ -142,7 +143,7 @@ const RoadtripGenerator = ({code}) => {
               </Card>
             ) :
             (
-                <Card variant="outlined" sx={{ height: 500, width: 500 }}>
+                <Card variant="outlined" sx={{ height: 500, width: 500, overflowY: "scroll" }}>
                 <CardContent>
                   <Typography variant="h3">Roadtrip Generator</Typography>
                   <Typography variant="h6">Please enter in each passenger's preferred song genre.</Typography>
@@ -185,6 +186,16 @@ const RoadtripGenerator = ({code}) => {
                     options={genres}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField {...params} label="Passenger 4" />}
+                  />
+                </CardActions>
+                <CardActions>
+                  <Autocomplete
+                    disablePortal
+                    id="passenger5-genre"
+                    onChange={(i, newValue) => {setpassenger5(newValue)}}
+                    options={genres}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} label="Passenger 5" />}
                   />
                 </CardActions>
                 <CardActions>
