@@ -15,8 +15,8 @@ const RoadtripGenerator = ({code}) => {
   let [passenger4, setpassenger4] = React.useState("");
   let [genres, setGenres] = useState([]);
   let [recommendations, setRecommendations] = useState([]);
-  let [recommendationsList, setRecommendationsList] = useState([]);
   let [numSongsInPlaylist, setNumSongsInPlaylist] = React.useState(0);
+  let playlistDuration = 0;
 
   useEffect(() => {
     if(accessToken){
@@ -43,11 +43,6 @@ const RoadtripGenerator = ({code}) => {
               console.log('response', response);
               setRecommendations(response.data.tracks);
               console.log('recommendations', recommendations);
-              recommendations.forEach((i) => setRecommendationsList(i.name))
-              Array.from(response.data.tracks).forEach((i) => {
-                setRecommendationsList(i.name);
-              })
-              console.log('recommendationsList', recommendationsList);
           })
           .catch((err) => {
             console.log('could not get recommendations', err);
@@ -55,9 +50,15 @@ const RoadtripGenerator = ({code}) => {
   };
 
   function msMS(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    var seconds = Math.floor((millis / 1000) % 60);
+    var minutes = Math.floor((millis / (1000 * 60)) % 60);
+    var hours = Math.floor((millis / (1000 * 60 * 60)) % 24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds;
   }
 
   return (
@@ -84,7 +85,7 @@ const RoadtripGenerator = ({code}) => {
                   variant="outlined" 
                 />
                 </CardActions>
-                {/* <CardActions>
+                <CardActions>
                   <TextField 
                   type="number"
                   id="num-passengers" 
@@ -93,7 +94,7 @@ const RoadtripGenerator = ({code}) => {
                   label="Number of passengers [1-4]" 
                   variant="outlined" 
                 />
-                </CardActions> */}
+                </CardActions>
                 <CardActions>
                   <TextField 
                   type="number"
@@ -114,8 +115,9 @@ const RoadtripGenerator = ({code}) => {
               <Card variant="outlined" sx={{ height: 500, width: 500, overflowY: "scroll", }}>
                 <CardContent>
                   <Typography variant="h3">Roadtrip Generator</Typography>
-                  <Typography variant="h5">Your estimated trip time is { estimatedTripTime }.</Typography>
-                  {/* <Typography variant="h5">You have { numPassengers } passengers.</Typography> */}
+                  {Array.from(recommendations).forEach((i) => playlistDuration += parseInt(i.duration_ms))} 
+                  <Typography variant="h5">The playlist duration is { msMS(playlistDuration) }.</Typography>
+                  <Typography variant="h5">You have { numPassengers } passengers.</Typography>
                   <Typography variant="h5">Passenger 1's genre is: { passenger1 }</Typography>
                   <Typography variant="h5">Passenger 2's genre is: { passenger2 }</Typography>
                   <Typography variant="h5">Passenger 3's genre is: { passenger3 }</Typography>
@@ -146,8 +148,6 @@ const RoadtripGenerator = ({code}) => {
                   <Typography variant="h6">Please enter in each passenger's preferred song genre.</Typography>
                 </CardContent>
                 <CardActions>
-                  {/* {passengers.map(i => <p>{i}</p>)} */}
-                  {/* {for(let i = 0; i < numPassengers; i++) {<p>hi</p>}} */}
                   <Autocomplete
                     disablePortal
                     id="passenger1-genre"
