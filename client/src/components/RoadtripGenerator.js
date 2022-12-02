@@ -7,8 +7,6 @@ const RoadtripGenerator = ({code}) => {
   const accessToken = useAuth(code);
   let [landingScreen, setlandingScreen] = React.useState(true);
   let [finalScreen, setfinalScreen] = React.useState(false);
-  let [estimatedTripTime, setestimatedTripTime] = React.useState("");
-  let [numPassengers, setenumPassengers] = React.useState(0);
   let [passenger1, setpassenger1] = React.useState("");
   let [passenger2, setpassenger2] = React.useState("");
   let [passenger3, setpassenger3] = React.useState("");
@@ -77,25 +75,6 @@ const RoadtripGenerator = ({code}) => {
                 <CardContent>
                   <Typography variant="h3">Roadtrip Generator</Typography>
                 </CardContent>
-                {/* <CardActions>
-                  <TextField 
-                  id="est-trip-time" 
-                  value={estimatedTripTime} 
-                  onChange={(i) => {setestimatedTripTime(i.target.value)}}
-                  label="Estimated Trip Time" 
-                  variant="outlined" 
-                />
-                </CardActions> */}
-                {/* <CardActions>
-                  <TextField 
-                  type="number"
-                  id="num-passengers" 
-                  value={numPassengers} 
-                  onChange={(i) => {setenumPassengers(i.target.value)}}
-                  label="Number of passengers [1-4]" 
-                  variant="outlined" 
-                />
-                </CardActions> */}
                 <CardActions>
                   <TextField 
                   type="number"
