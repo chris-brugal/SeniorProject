@@ -76,7 +76,7 @@ const RoadtripGenerator = ({code}) => {
                 <CardContent>
                   <Typography variant="h3">Roadtrip Generator</Typography>
                 </CardContent>
-                <CardActions>
+                {/* <CardActions>
                   <TextField 
                   id="est-trip-time" 
                   value={estimatedTripTime} 
@@ -84,7 +84,7 @@ const RoadtripGenerator = ({code}) => {
                   label="Estimated Trip Time" 
                   variant="outlined" 
                 />
-                </CardActions>
+                </CardActions> */}
                 <CardActions>
                   <TextField 
                   type="number"
