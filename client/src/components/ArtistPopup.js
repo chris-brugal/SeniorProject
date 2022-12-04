@@ -69,6 +69,6 @@ import { Typography, Grid, Card, CardMedia, CardContent, CardActionArea, Dialog,
                 </Dialog>
             );
         } else {
-            <div/>
+            return(<div/>);
         }
     }
